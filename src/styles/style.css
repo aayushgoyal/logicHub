@@ -1,0 +1,12 @@
+/* Global styles */
+
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-size: 16px;
+}
+
+body{
+    overflow: hidden;
+}
