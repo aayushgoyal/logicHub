@@ -27,7 +27,9 @@ export const generateTab = (event) => {
 
         tabs.splice(tabIndex, 1);
         eventsData[tab['eventIndex']].isOpen = false;
-        tabHeaderEl.removeChild(document.getElementById(tab['tabId']));
+        tabHeaderEl.removeChild(document.getElementById(tab['tabId'])); 
+        
+        tabsEl.innerHTML = '';
    }
 
    function addTab() {
@@ -39,12 +41,12 @@ export const generateTab = (event) => {
         tabs.push(tabData);
        
         generateTabUI(tabData);
-        addEventListenerToClose();
+        addEventListener();
         showData(tabData);
    }
 
    function generateTabUI(tabData) {
-    tabHeaderEl.innerHTML += `<div class="tabHeader" id="${tabData.tabId}">${eventsData[tabData.eventIndex].name} <button id=${tabData.closeBtnId}>X</button></div>`;
+    tabHeaderEl.innerHTML += `<div class="tabHeader" id="${tabData.tabId}"><p>${eventsData[tabData.eventIndex].name}</p> <button id=${tabData.closeBtnId}>X</button></div>`;
    }
 
    function showData(tabData) {
@@ -56,26 +58,29 @@ export const generateTab = (event) => {
           e.classList.remove('active');
       });
 
-      document.getElementById(tabData['tabId']).classList.add('active');
-     
+
+      if(document.getElementById(tabData['tabId'])) {
+        document.getElementById(tabData['tabId']).classList.add('active');
+      }
+      
       tabsEl.innerHTML = '';
 
-      data.forEach((d) => {
-        tabsEl.innerHTML += `<p>${d.content}</p>`
-      })
+      if(tabs.length !== 0) {
+        data.forEach((d) => {
+            tabsEl.innerHTML += `<p>${d.content}</p>`
+        });
+      } 
    }
 
-   function addEventListenerToClose() {
+   function addEventListener() {
     tabs.forEach(tab => {
         const close = document.getElementById(tab.closeBtnId);
         close.addEventListener('click', removeTab.bind(this, tab));
 
-
-        const opendTab = document.getElementById(tab.tabId);
+        const opendTab = document.querySelector(`#${tab.tabId} p`);
         opendTab.addEventListener('click', showData.bind(this, tab));
     });
    }
 
- 
 
 }
