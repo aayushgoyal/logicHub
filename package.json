@@ -10,10 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "babel-loader": "^8.0.6",
-    "webpack": "^4.39.2"
+    "babel-loader": "^8.3.0",
+    "webpack": "^5.75.0"
   },
   "devDependencies": {
-    "webpack-cli": "^3.3.6"
+    "webpack-cli": "^5.0.1"
   }
 }
